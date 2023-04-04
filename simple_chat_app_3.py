@@ -83,7 +83,7 @@ with st.sidebar.expander(" 🛠️ Settings ", expanded=False):
     K = st.number_input(' (#)Summary of prompts to consider',min_value=3,max_value=1000)
 
 # Set up the Streamlit app layout
-st.title("🔍 Alkemie Chatbot 🧐")  # https://unicode.org/emoji/charts/full-emoji-list.html
+st.title("🔍 Generative Chatbot 🧐")  # https://unicode.org/emoji/charts/full-emoji-list.html
 st.markdown(
         ''' 
         > :black[**A Chatbot that remembers,**  *powered by -  [LangChain]('https://langchain.readthedocs.io/en/latest/modules/memory.html#memory') + 
