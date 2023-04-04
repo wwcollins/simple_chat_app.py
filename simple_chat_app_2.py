@@ -5,7 +5,6 @@
 
 # CONSTANTS
 APP_ID_NAME = "CHAT INTERFACE ALKEMIE TECHNOLOGIES - Personal Assistant"
-# OPENAI_API_KEY = "sk-****YuscScM18z" moved to .env
 
 import openai
 import os
@@ -19,13 +18,14 @@ from langchain.chains.conversation.prompt import ENTITY_MEMORY_CONVERSATION_TEMP
 # from langchain.llms import OpenAI
 from langchain.chat_models import ChatOpenAI as OpenAI
 
-def get_open_api_key():
+def get_streamlight_open_api_key():
     # This code was initially used for CLI version and is reused here for expediency - tech debt TODO
     from dotenv import load_dotenv
     # Load the API key from the .env file
     load_dotenv()
-    api_key = os.getenv('API_KEY')
-    print(OPENAI_API_KEY)
+    api_key = os.getenv('OPENAI_API_KEY')
+    # print(api_key)
+    return api_key
 
 st.set_page_config(page_title='🧠MemoryBot🤖', layout='wide')
 if "generated" not in st.session_state:
@@ -86,9 +86,18 @@ st.markdown(
 
 # Ask the user to enter their OpenAI API key
 
+key = get_streamlight_open_api_key() # currently persisted in .env file
+print(key)
+
 API_O = st.sidebar.text_input(":blue[Enter Your OPENAI API-KEY :]",
                 placeholder="Paste your OpenAI API key here (sk-...)",
                 type="password") # Session state storage would be ideal
+print(API_O)
+
+quit()
+
+if len(API_O) == 0:
+    API_O = key
 
 if API_O:
     # Create an OpenAI instance
@@ -159,7 +168,7 @@ if st.session_state.stored_session:
 
 
 
-
+quit()
 
 #####################################################################################
 

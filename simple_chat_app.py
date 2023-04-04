@@ -10,7 +10,6 @@ import dotenv # pip install python-dotenv
 
 # CONSTANTS
 APP_ID_NAME = "CHAT INTERFACE ALKEMIE TECHNOLOGIES - Personal Assistant"
-OPENAI_API_KEY = "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"
 
 
 # METHODS
@@ -35,19 +34,17 @@ def get_open_api_key():
     # Load the API key from the .env file
     load_dotenv()
     api_key = os.getenv('OPENAI_API_KEY')
-    # print(api_key)
-
+    print(api_key)
+    return api_key
 
 # Defining main function
 def main():
 
     # Define OpenAI API key
     try:
-        openai.api_key = OPENAI_API_KEY
+        openai.api_key = get_open_api_key()
     except Exception as e:
-        print
-        e.message, e.args
-        quit("quitting due to API Key failure..")
+        print (e.message, e.args)
 
     '''
     create a loop that:
