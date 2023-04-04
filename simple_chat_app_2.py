@@ -24,7 +24,7 @@ def get_streamlight_open_api_key():
     # Load the API key from the .env file
     load_dotenv()
     api_key = os.getenv('OPENAI_API_KEY')
-    # print(api_key)
+    print("get_streamlight_open_api_key", api_key)
     return api_key
 
 st.set_page_config(page_title='🧠MemoryBot🤖', layout='wide')
@@ -75,7 +75,7 @@ with st.sidebar.expander(" 🛠️ Settings ", expanded=False):
     K = st.number_input(' (#)Summary of prompts to consider',min_value=3,max_value=1000)
 
 # Set up the Streamlit app layout
-st.title("🧠 Memory Bot 🤖")
+st.title("🔍 Alkemie Chatbot 🧐")  # https://unicode.org/emoji/charts/full-emoji-list.html
 st.markdown(
         ''' 
         > :black[**A Chatbot that remembers,**  *powered by -  [LangChain]('https://langchain.readthedocs.io/en/latest/modules/memory.html#memory') + 
@@ -87,14 +87,13 @@ st.markdown(
 # Ask the user to enter their OpenAI API key
 
 key = get_streamlight_open_api_key() # currently persisted in .env file
-print(key)
+#print(key)
 
 API_O = st.sidebar.text_input(":blue[Enter Your OPENAI API-KEY :]",
                 placeholder="Paste your OpenAI API key here (sk-...)",
                 type="password") # Session state storage would be ideal
-print(API_O)
+print("API_O", API_O)
 
-quit()
 
 if len(API_O) == 0:
     API_O = key
