@@ -34,8 +34,8 @@ def get_open_api_key():
     from dotenv import load_dotenv
     # Load the API key from the .env file
     load_dotenv()
-    api_key = os.getenv('API_KEY')
-    print(OPENAI_API_KEY)
+    api_key = os.getenv('OPENAI_API_KEY')
+    # print(api_key)
 
 
 # Defining main function
