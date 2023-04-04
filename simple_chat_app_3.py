@@ -173,7 +173,7 @@ if st.session_state.stored_session:
         del st.session_state.stored_session
 
 
-st.caption('Alkemie Technologies LLC - All Rights Reserved')
+st.caption('William Collins - All Rights Reserved')
 
 quit()
 
