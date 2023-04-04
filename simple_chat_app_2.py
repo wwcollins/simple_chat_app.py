@@ -83,7 +83,7 @@ with st.sidebar.expander(" 🛠️ Settings ", expanded=False):
 st.title("🔍 Alkemie Chatbot 🧐")  # https://unicode.org/emoji/charts/full-emoji-list.html
 st.markdown(
         ''' 
-        > :black[**A Chatbot that remembers,**  *powered by -  [LangChain]('https://langchain.readthedocs.io/en/latest/modules/memory.html#memory') + 
+        > :black[**A Chatbot that remembers,**  *powered by -  [Alkemie]('https://alkemietechnologies.com') + [LangChain]('https://langchain.readthedocs.io/en/latest/modules/memory.html#memory') + 
         [OpenAI]('https://platform.openai.com/docs/models/gpt-3-5') + 
         [Streamlit]('https://streamlit.io') + [DataButton](https://www.databutton.io/)*]
         ''')

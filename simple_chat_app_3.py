@@ -21,8 +21,6 @@ from langchain.chains.conversation.prompt import ENTITY_MEMORY_CONVERSATION_TEMP
 # line changed due to requirement to import ChatOpenAI vs OpenAI
 from langchain.chat_models import ChatOpenAI as OpenAI
 
-
-
 def get_streamlight_open_api_key():
     # This code was initially used for CLI version and is reused here for expediency - tech debt TODO
     from dotenv import load_dotenv
@@ -77,7 +75,10 @@ with st.sidebar.expander(" 🛠️ Settings ", expanded=False):
     if st.checkbox("Preview memory buffer"):
         st.write(st.session_state.entity_memory.buffer)
     MODEL = st.selectbox(label='Model',
-                         options=['gpt-3.5-turbo','text-davinci-003','text-davinci-002','code-davinci-002'])
+                         options=['gpt-3.5-turbo'])
+    # options = ['gpt-3.5-turbo', 'text-davinci-003', 'code-davinci-002']) # original code but replaced by above since remaining options threw error
+    TEMPERATURE = st.selectbox(label='Temperature',
+                         options=[0.5, 0, 1])
     K = st.number_input(' (#)Summary of prompts to consider',min_value=3,max_value=1000)
 
 # Set up the Streamlit app layout
@@ -98,14 +99,14 @@ key = get_streamlight_open_api_key() # currently persisted in .env file
 API_O = st.sidebar.text_input(":blue[Enter Your OPENAI API-KEY :]",
                 placeholder="Paste your OpenAI API key here (sk-...)",
                 type="password") # Session state storage would be ideal
-print("API_O", API_O)
+# print("API_O", API_O)
 
 if len(API_O) == 0:
     API_O = key
 
 if API_O:
     # Create an OpenAI instance
-    llm = OpenAI(temperature=0,
+    llm = OpenAI(temperature=TEMPERATURE,
                  openai_api_key=API_O,
                  model_name=MODEL,
                  verbose=False)
