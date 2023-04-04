@@ -172,6 +172,7 @@ if st.session_state.stored_session:
         del st.session_state.stored_session
 
 
+st.caption('Alkemie Technologies LLC - All Rights Reserved')
 
 quit()
 
