@@ -7,8 +7,9 @@
 # CONSTANTS
 APP_ID_NAME = "CHAT INTERFACE ALKEMIE TECHNOLOGIES - Personal Assistant"
 
-import openai
+
 import os
+import openai
 # import dotenv # pip install python-dotenv moved to fn
 
 import streamlit as st
