@@ -1,4 +1,5 @@
 # Streamlit Version
+# tutorial: http://www.geeksforgeeks.org/a-beginners-guide-to-streamlit/
 # uses chatgpi to create instructions sets/code
 # ref https://medium.com/@avra42/how-to-build-a-chatbot-with-chatgpt-api-and-a-
 # conversational-memory-in-python-8d856cda4542
@@ -16,7 +17,11 @@ from langchain.chains import ConversationChain
 from langchain.chains.conversation.memory import ConversationEntityMemory
 from langchain.chains.conversation.prompt import ENTITY_MEMORY_CONVERSATION_TEMPLATE
 # from langchain.llms import OpenAI
+
+# line changed due to requirement to import ChatOpenAI vs OpenAI
 from langchain.chat_models import ChatOpenAI as OpenAI
+
+
 
 def get_streamlight_open_api_key():
     # This code was initially used for CLI version and is reused here for expediency - tech debt TODO
@@ -94,7 +99,6 @@ API_O = st.sidebar.text_input(":blue[Enter Your OPENAI API-KEY :]",
                 type="password") # Session state storage would be ideal
 print("API_O", API_O)
 
-
 if len(API_O) == 0:
     API_O = key
 
@@ -146,7 +150,7 @@ download_str = []
 with st.expander("Conversation", expanded=True):
     for i in range(len(st.session_state['generated']) - 1, -1, -1):
         st.info(st.session_state["past"][i], icon="🧐")
-        st.success(st.session_state["generated"][i], icon="🤖")
+        st.success(st.session_state["generated"][i], icon="🧠")
         download_str.append(st.session_state["past"][i])
         download_str.append(st.session_state["generated"][i])
 
