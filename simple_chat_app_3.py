@@ -86,7 +86,7 @@ with st.sidebar.expander(" 🛠️ Settings ", expanded=False):
 st.title("🔍 Generative Chatbot 🧐")  # https://unicode.org/emoji/charts/full-emoji-list.html
 st.markdown(
         ''' 
-        > :black[**A Chatbot that remembers,**  *powered by -  [LangChain]('https://langchain.readthedocs.io/en/latest/modules/memory.html#memory') + 
+        > :black[**A Context-Based Generative AI Bot,  *powered by -  [LangChain]('https://langchain.readthedocs.io/en/latest/modules/memory.html#memory') + 
         [OpenAI]('https://platform.openai.com/docs/models/gpt-3-5') + 
         [Streamlit]('https://streamlit.io') + [DataButton](https://www.databutton.io/)*]
         ''')
@@ -142,6 +142,7 @@ st.sidebar.button("New Chat", on_click=new_chat, type='primary')
 # Get the user INPUT and RUN the chain.
 # Also, store them — that can be dumped in the future in a chat conversation format
 user_input = get_text()
+i = 0
 if user_input:
     while i < 2:
         try:
