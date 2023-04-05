@@ -189,7 +189,7 @@ from io import StringIO
 uploaded_file = st.file_uploader("Choose a file to upload")
 
 if uploaded_file is not None:
-    print('Read and write file as bytes'):
+    print('Read and write file as bytes')
     # bytes_data = uploaded_file.getvalue()
     st.write(bytes_data)
 
