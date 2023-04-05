@@ -68,7 +68,7 @@ def get_text():
                             label_visibility='hidden')
     return input_text
 
-with st.sidebar.expander(" 🛠️ Settings ", expanded=False):
+with st.sidebar.expander(" 🛠️ Settings ", expanded=True):
     # Option to preview memory store
     if st.checkbox("Preview memory store"):
         st.write(st.session_state.entity_memory.store)
@@ -76,7 +76,7 @@ with st.sidebar.expander(" 🛠️ Settings ", expanded=False):
     if st.checkbox("Preview memory buffer"):
         st.write(st.session_state.entity_memory.buffer)
     MODEL = st.selectbox(label='Model',
-                         options=['gpt-3.5-turbo'])
+                         options=['gpt-3.5-turbo', 'text-davinci-0o03', 'code-davinci-0o02'])
     # options = ['gpt-3.5-turbo', 'text-davinci-003', 'code-davinci-002']) # original code but replaced by above since remaining options threw error
     TEMPERATURE = st.selectbox(label='Temperature',
                          options=[0.5, 0, 1])
@@ -142,20 +142,20 @@ st.sidebar.button("New Chat", on_click=new_chat, type='primary')
 # Get the user INPUT and RUN the chain.
 # Also, store them — that can be dumped in the future in a chat conversation format
 user_input = get_text()
-i = 0
+print("Payload user input len = "), len(user_input)
 if user_input:
-    while i < 2:
+    import time
+    import streamlit as st
+
+    with st.spinner("processing your request...  this might take awhile"):
+        time.sleep(5)
         try:
             output = Conversation.run(input=user_input)
             st.session_state.past.append(user_input)
             st.session_state.generated.append(output)
         except Exception as e:
-            print ('Error:', e.message, e.args)
-            output = Conversation.run(input=user_input)
-            st.session_state.past.append(user_input)
-            st.session_state.generated.append(output)
-            print("trying again...")
-        i=+1
+            print ('Error:', e)
+        st.success('Done!')
 
 # Allow to download as well
 download_str = []
@@ -186,7 +186,7 @@ import streamlit as st
 import pandas as pd
 from io import StringIO
 
-uploaded_file = st.file_uploader("Choose a file")
+uploaded_file = st.file_uploader("Choose a file to upload")
 if uploaded_file is not None:
     # To read file as bytes:
     bytes_data = uploaded_file.getvalue()
@@ -217,7 +217,7 @@ quit()
 # METHODS: Back End
 
 # Generate a response
-def generate(prompt, model_engine:"text-davinci-003", temperature=0):
+def generate(prompt, model_engine: "text-davinci-0o03", temperature=0):
     get_open_api_key()
     completion = openai.Completion.create(
         engine=model_engine,
@@ -236,7 +236,7 @@ def get_open_api_key():
     # Load the API key from the .env file
     load_dotenv()
     api_key = os.getenv('API_KEY')
-    print(OPENAI_API_KEY)
+    print(api_key)
 
 
 # Defining main function
@@ -244,7 +244,7 @@ def main():
 
     # Define OpenAI API key
     try:
-        openai.api_key = OPENAI_API_KEY
+        openai.api_key = get_open_api_key()
     except Exception as e:
         print
         e.message, e.args
@@ -261,7 +261,7 @@ def main():
     '''
 
     # Set up the model and prompt
-    model_engine = "text-davinci-003"
+    model_engine = "text-davinci-0o03"
     prompt = "Create an article about the next great improvements in the future of Artificial Intelligence"
     temperature = 0
 
