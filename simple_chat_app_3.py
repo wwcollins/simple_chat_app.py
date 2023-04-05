@@ -143,16 +143,18 @@ st.sidebar.button("New Chat", on_click=new_chat, type='primary')
 # Also, store them — that can be dumped in the future in a chat conversation format
 user_input = get_text()
 if user_input:
-    try:
-        output = Conversation.run(input=user_input)
-        st.session_state.past.append(user_input)
-        st.session_state.generated.append(output)
-    except Exception as e:
-        print
-        e.message, e.args
-        output = Conversation.run(input=user_input)
-        st.session_state.past.append(user_input)
-        st.session_state.generated.append(output)
+    while i < 2:
+        try:
+            output = Conversation.run(input=user_input)
+            st.session_state.past.append(user_input)
+            st.session_state.generated.append(output)
+        except Exception as e:
+            print ('Error:', e.message, e.args)
+            output = Conversation.run(input=user_input)
+            st.session_state.past.append(user_input)
+            st.session_state.generated.append(output)
+            print("trying again...")
+        i=+1
 
 # Allow to download as well
 download_str = []
