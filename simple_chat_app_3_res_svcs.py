@@ -97,7 +97,6 @@ st.markdown(
 
 
 # Ask the user to enter their OpenAI API key
-
 key = get_streamlight_open_api_key() # currently persisted in .env file
 #print(key)
 
