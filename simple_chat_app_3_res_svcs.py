@@ -5,11 +5,11 @@
 # conversational-memory-in-python-8d856cda4542
 
 # CONSTANTS
-APP_ID_NAME = "CHAT INTERFACE ALKEMIE TECHNOLOGIES - Personal Assistant"
+APP_ID_NAME = "CHAT INTERFACE ALKEMIE TECHNOLOGIES - Personal Assistant for Job Seekers"
 
 import os
 import openai
-# import dotenv # pip install python-dotenv moved to fn
+# import dotenv # pip install python-dotenv moved to fn # see def
 
 import streamlit as st
 ##from langchain.chat_models import ChatOpenAI
@@ -22,7 +22,7 @@ from langchain.chains.conversation.prompt import ENTITY_MEMORY_CONVERSATION_TEMP
 from langchain.chat_models import ChatOpenAI as OpenAI
 
 def get_streamlight_open_api_key():
-    # This code was initially used for CLI version and is reused here for expediency - tech debt TODO
+    # This code was initially used for CLI version and is reused here for expediency
     from dotenv import load_dotenv
     # Load the API key from the .env file
     load_dotenv()
@@ -62,7 +62,7 @@ def get_text():
     Returns:
         (str): The text entered by the user
     """
-    input_text = st.text_input("You: ", st.session_state["input"], key="input",
+    input_text = st.text_area("You: ", st.session_state["input"], key="input",
                             placeholder="Your AI assistant here! Ask me anything ...",
                             label_visibility='hidden')
     return input_text
@@ -177,7 +177,8 @@ with st.expander("Conversation", expanded=True):
 
 # Display stored conversation sessions in the sidebar
 for i, sublist in enumerate(st.session_state.stored_session):
-        with st.sidebar.expander(label= f"Conversation-Session:{i}"):
+        # with st.sidebar.expander(label= f"Conversation-Session:{i}"):
+        with st.sidebar.expander(label=f"Conversation:{i}"):
             st.write(sublist)
 
 # Allow the user to clear all stored conversation sessions
@@ -206,9 +207,9 @@ if uploaded_file is not None:
     string_data = stringio.read()
     st.write(string_data)
 
-    # Below Can be used wherever a "file-like" object is accepted:
-    # dataframe = pd.read_csv(uploaded_file)
-    # st.write(dataframe)
+    # Follwing Can be used wherever a "file-like" object is accepted:
+    dataframe = pd.read_csv(uploaded_file)
+    st.write(dataframe)
 
 st.caption('William Collins - All Rights Reserved')
 
