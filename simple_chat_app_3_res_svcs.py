@@ -145,7 +145,8 @@ st.sidebar.button("New Chat", on_click=new_chat, type='primary')
 # Get the user INPUT and RUN the chain.
 # Also, store them — that can be dumped in the future in a chat conversation format
 user_input = get_text()
-st.caption ("Chars = " + len(user_input))
+len_user_input = str(len(user_input))
+st.caption ("Chars = " + len_user_input)
 
 if user_input:
     import time
