@@ -21,6 +21,19 @@ from langchain.chains.conversation.prompt import ENTITY_MEMORY_CONVERSATION_TEMP
 # line changed due to requirement to import ChatOpenAI vs OpenAI
 from langchain.chat_models import ChatOpenAI as OpenAI
 
+
+
+
+def get_github_version():
+    # url example: https://api.github.com/repos/{owner}/{repo}/releases/latest
+    import requests
+    url = "https://api.github.com/repos/wwcollins/simple_chat_app.py/releases/latest"
+    response = requests.get("https://api.github.com/repos/v2ray/v2ray-core/releases/latest")
+    version_name = response.json()["name"]
+    print("github version name", version_name)
+    return version_name
+
+
 def get_streamlight_open_api_key():
     # This code was initially used for CLI version and is reused here for expediency
     from dotenv import load_dotenv
@@ -89,7 +102,11 @@ with st.sidebar.expander(" 🛠️ Settings ", expanded=False): # TODO - leverag
     K = st.number_input(' (#)Summary of prompts to consider',min_value=50,max_value=1000)
 
 # Set up the Streamlit app layout
-st.title("🔍 Generative AI Assistant 🧐")  # https://unicode.org/emoji/charts/full-emoji-list.html
+st.title("🔍 Generative AI Assistant 🧐")
+gh_version = get_github_version()
+st.caption(gh_version)
+
+# https://unicode.org/emoji/charts/full-emoji-list.html
 st.markdown(
         ''' 
         > :black[**A Context-Based Generative AI Bot,  *powered by -  [LangChain]('https://langchain.readthedocs.io/en/latest/modules/memory.html#memory') + 
@@ -179,8 +196,8 @@ if user_input:
             output = Conversation.run(input=user_input)
             output_len = len(output)
             st.caption ("Assistant output length: ", output_len)
-            if len(output) > 0:
-                st.warning("We apologize.  The AI Assistant Engine return null response. Try rerunning your"
+            if len(output) == 0:
+                st.warning("We apologize.  The AI Assistant Engine returned no response. Try rerunning your"
                            " request.  If this does not help please clear your browser cache.")
             st.session_state.past.append(user_input)
             st.session_state.generated.append(output)
