@@ -177,6 +177,11 @@ if user_input:
         time.sleep(5)
         try:
             output = Conversation.run(input=user_input)
+            output_len = len(output)
+            st.caption ("Assistant output length: ", output_len)
+            if len(output) > 0:
+                st.warning("We apologize.  The AI Assistant Engine return null response. Try rerunning your"
+                           " request.  If this does not help please clear your browser cache.")
             st.session_state.past.append(user_input)
             st.session_state.generated.append(output)
         except Exception as e:
