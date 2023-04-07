@@ -82,7 +82,7 @@ def get_text():
     input_text = st.text_input("You: ", st.session_state["input"], max_chars=10000,  key="input", placeholder="Your AI assistant here! Ask me anything ...")
     if len(input_text) > 4000:
         # st.balloons()
-        st.write('You have exceeded the allowable character limit of 4000')
+        st.write('You have exceeded the suggested character limit of 4000')
     return input_text
 
 
