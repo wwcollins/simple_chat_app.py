@@ -39,10 +39,13 @@ import streamlit as st
 def get_github_version():
     # url example: https://api.github.com/repos/{owner}/{repo}/releases/latest
     url = "https://api.github.com/repos/wwcollins/simple_chat_app.py/releases/latest"
-    response = requests.get("https://api.github.com/repos/v2ray/v2ray-core/releases/latest")
-    version_name = response.json()["name"]
-    print("github version name", version_name)
-    return version_name
+    try:
+        response = requests.get("https://api.github.com/repos/v2ray/v2ray-core/releases/latest")
+        version_name = response.json()["name"]
+        print("github version name", version_name)
+        return version_name
+    except Exception as e:
+        print("An Error occurred trying to pull version number from Github:", e)
 
 def get_streamlight_open_api_key():
     # This code was initially used for CLI version and is reused here for expediency
