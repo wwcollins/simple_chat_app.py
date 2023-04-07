@@ -62,12 +62,17 @@ def get_text():
     Returns:
         (str): The text entered by the user
     """
-    input_text = st.text_area("You: ", st.session_state["input"], key="input",
+    input_text = st.text_input("You: ", st.session_state["input"], key="input",
                             placeholder="Your AI assistant here! Ask me anything ...",
                             label_visibility='hidden')
     return input_text
 
-with st.sidebar.expander(" 🛠️ Settings ", expanded=True):
+
+# END METHODS - main code
+
+    # Build Side Bar
+
+with st.sidebar.expander(" 🛠️ Settings ", expanded=False): # TODO - leverage this code e.g. Resume expansion of sections
     # Option to preview memory store
     if st.checkbox("Preview memory store"):
         st.write(st.session_state.entity_memory.store)
@@ -89,7 +94,16 @@ st.markdown(
         [OpenAI]('https://platform.openai.com/docs/models/gpt-3-5') + 
         [Streamlit]('https://streamlit.io') + [DataButton](https://www.databutton.io/)*]
         ''')
-# st.markdown(" > Powered by -  🦜 LangChain + OpenAI + Dotenv + Streamlit")
+# st.markdown(" > Powered by -  🦜 LangChain + OpenAI + Streamlit")
+
+
+
+# with st.expander('more...'):  # TODO this is throwing exception re nested expanders not allowed TODO investigate!
+    #with st.expander("Resume Information", expanded=False):
+        #st.write("...additional info here...")
+
+
+
 
 # -- start demo buttons
 # TODO create demo buttons that pre-populates the main input box - In Progress
