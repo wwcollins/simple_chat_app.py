@@ -62,9 +62,11 @@ def get_text():
     Returns:
         (str): The text entered by the user
     """
-    input_text = st.text_input("You: ", st.session_state["input"], key="input",
-                            placeholder="Your AI assistant here! Ask me anything ...",
-                            label_visibility='hidden')
+    # st.text_input(label, value="", max_chars=None, key=None, type="default", help=None, autocomplete=None, on_change=None, args=None, kwargs=None, *, placeholder=None, disabled=False, label_visibility="visible")
+    input_text = st.text_input("You: ", st.session_state["input"], max_chars=10000,  key="input", placeholder="Your AI assistant here! Ask me anything ...")
+    if len(input_text) > 4000:
+        # st.balloons()
+        st.write('You have exceeded the allowable character limit of 4000')
     return input_text
 
 
@@ -87,7 +89,7 @@ with st.sidebar.expander(" 🛠️ Settings ", expanded=False): # TODO - leverag
     K = st.number_input(' (#)Summary of prompts to consider',min_value=50,max_value=1000)
 
 # Set up the Streamlit app layout
-st.title("🔍 Generative Chatbot 🧐")  # https://unicode.org/emoji/charts/full-emoji-list.html
+st.title("🔍 Generative AI Assistant 🧐")  # https://unicode.org/emoji/charts/full-emoji-list.html
 st.markdown(
         ''' 
         > :black[**A Context-Based Generative AI Bot,  *powered by -  [LangChain]('https://langchain.readthedocs.io/en/latest/modules/memory.html#memory') + 
@@ -156,11 +158,16 @@ else:
 # Implementing a Button to Clear the memory and calling the new_chat() function
 st.sidebar.button("New Chat", on_click=new_chat, type='primary')
 
+########### GET USER INPUT AND PROCESS ###############
 # Get the user INPUT and RUN the chain.
 # Also, store them — that can be dumped in the future in a chat conversation format
 user_input = get_text()
+#  TODO Opportunity to analyze returned text from user here - bad stuff, formatting, warnings, etc.  Use
+# corresponding python libs NLP etc to do this
+
 len_user_input = str(len(user_input))
-st.caption ("Chars = " + len_user_input)
+# st.caption ("Chars = " + len_user_input)
+
 
 if user_input:
     import time
@@ -174,7 +181,9 @@ if user_input:
             st.session_state.generated.append(output)
         except Exception as e:
             print ('Error:', e)
-        st.success('Done!')
+
+        st.success('Done! See response, below')
+        st.balloons()
 
 # Allow to download as well
 download_str = []
