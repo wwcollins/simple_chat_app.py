@@ -102,7 +102,7 @@ with st.sidebar.expander(" 🛠️ Settings ", expanded=False): # TODO - leverag
     # options = ['gpt-3.5-turbo', 'text-davinci-003', 'code-davinci-002']) # original code but replaced by above since remaining options threw error
     TEMPERATURE = st.selectbox(label='Temperature',
                          options=[0.5, 0, 1])
-    K = st.number_input(' (#)Summary of prompts to consider',min_value=50,max_value=1000)
+    K = st.number_input(' (#)Summary of prompts to consider',min_value=3,max_value=1000)
 
 # Set up the Streamlit app layout
 
