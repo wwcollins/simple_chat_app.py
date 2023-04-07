@@ -203,8 +203,11 @@ if authenticate_app:
     # end authenticator
 
 st.title("🔍 Generative AI Assistant 🧐")
-gh_version = get_github_version()
-st.caption(gh_version + " with authenticator")
+try:
+    gh_version = get_github_version()
+    st.caption(gh_version + " with authenticator")
+except Exception as e:
+    st.caption("version not currently available" + " with authenticator")
 
 # https://unicode.org/emoji/charts/full-emoji-list.html
 st.markdown(
