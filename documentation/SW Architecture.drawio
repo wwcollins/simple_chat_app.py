@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2023-04-07T03:43:04.956Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36" etag="EITmChtQ_TFMZj4vD4ga" version="21.1.4" type="onedrive">
+<mxfile host="app.diagrams.net" modified="2023-04-07T03:55:43.682Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36" etag="IoLwQpivJHDAMIavEIhA" version="21.1.4" type="device">
   <diagram id="2f404044-711c-603c-8f00-f6bb4c023d3c" name="Page-1">
-    <mxGraphModel dx="1221" dy="544" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" background="none" math="0" shadow="0">
+    <mxGraphModel dx="1221" dy="510" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" background="none" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -119,9 +119,11 @@
         <mxCell id="4" value="INTERNAL&lt;div&gt;CHANNEL&lt;/div&gt;" style="aspect=fixed;perimeter=ellipsePerimeter;html=1;align=center;shadow=0;dashed=0;image;image=img/lib/ibm/data/data_sources.svg;strokeColor=#FF0000;fillColor=#FFFF66;gradientColor=none;fontColor=#4277BB;labelBackgroundColor=#ffffff;spacingTop=3;" parent="21" vertex="1">
           <mxGeometry x="60" y="330" width="60" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="5" value="EDGE&lt;div&gt;SERVICES&lt;/div&gt;" style="aspect=fixed;perimeter=ellipsePerimeter;html=1;align=center;shadow=0;dashed=0;image;image=img/lib/ibm/infrastructure/edge_services.svg;strokeColor=#FF0000;fillColor=#FFFF66;gradientColor=none;fontColor=#4277BB;labelBackgroundColor=#ffffff;spacingTop=3;" parent="21" vertex="1">
-          <mxGeometry x="200" y="140" width="60" height="60" as="geometry" />
-        </mxCell>
+        <UserObject label="EDGE&lt;div&gt;SERVICES&lt;/div&gt;" link="https://aws.amazon.com/edge/services/" linkTarget="_blank" id="5">
+          <mxCell style="aspect=fixed;perimeter=ellipsePerimeter;html=1;align=center;shadow=0;dashed=0;image;image=img/lib/ibm/infrastructure/edge_services.svg;strokeColor=#FF0000;fillColor=#FFFF66;gradientColor=none;fontColor=#4277BB;labelBackgroundColor=#ffffff;spacingTop=3;" parent="21" vertex="1">
+            <mxGeometry x="200" y="140" width="60" height="60" as="geometry" />
+          </mxCell>
+        </UserObject>
         <mxCell id="6" value="API&lt;div&gt;MANAGEMENT&lt;/div&gt;" style="aspect=fixed;perimeter=ellipsePerimeter;html=1;align=center;shadow=0;dashed=0;image;image=img/lib/ibm/management/api_management.svg;strokeColor=#FF0000;fillColor=#FFFF66;gradientColor=none;fontColor=#4277BB;labelBackgroundColor=#ffffff;spacingTop=3;" parent="21" vertex="1">
           <mxGeometry x="490" y="65" width="60" height="60" as="geometry" />
         </mxCell>

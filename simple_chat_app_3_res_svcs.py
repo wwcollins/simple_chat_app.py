@@ -11,12 +11,15 @@ import os
 import openai
 # import dotenv # pip install python-dotenv moved to fn # see def
 
-import streamlit as st
 ##from langchain.chat_models import ChatOpenAI
 from langchain.chains import ConversationChain
 from langchain.chains.conversation.memory import ConversationEntityMemory
 from langchain.chains.conversation.prompt import ENTITY_MEMORY_CONVERSATION_TEMPLATE
 # from langchain.llms import OpenAI
+
+import streamlit as st
+import pandas as pd
+from io import StringIO
 
 # line changed due to requirement to import ChatOpenAI vs OpenAI
 from langchain.chat_models import ChatOpenAI as OpenAI
@@ -102,14 +105,107 @@ with st.sidebar.expander(" 🛠️ Settings ", expanded=False): # TODO - leverag
     K = st.number_input(' (#)Summary of prompts to consider',min_value=50,max_value=1000)
 
 # Set up the Streamlit app layout
+
+# Authenticator (streamlit - authenticator)
+authenticate_app = False # TODO address issues when this is set to True
+if authenticate_app:
+    import streamlit_authenticator as stauth
+    import yaml # pip install pyaml
+    from yaml.loader import SafeLoader
+
+    # Fixed Error thrown below, check if file exists
+    import os.path
+    path = 'compose-dev.yaml'
+    bcheck_file = os.path.isfile(path)
+    print(bcheck_file, path)
+
+    if bcheck_file:
+        with open(path, 'r') as file:
+            config = yaml.load(file, Loader=SafeLoader)
+            # print("config credentials = " + config['cookie']['name'])
+            # print("config credentials = " + config['cookie']['key'])
+            print("config = ", config['credentials']['usernames'])
+            st.write ("config = ", config['credentials']['usernames'])
+            # st.write("config email = ", config['credentials']['usernames']['email'])
+            st.write("config expiry days cookie = ", config['cookie']['expiry_days'])
+            st.write('config preauth emails = ', config['preauthorized']['emails'])
+            usernames_list = []
+            for x in config['credentials']['usernames']:
+                usernames_list.append(x)
+                st.write(x)
+                st.write(usernames_list)
+            st.write('construct pw list')
+            password_list = []
+
+            # print(people[1]['name'])
+            for y in config['credentials']['usernames']:
+                st.write(y) # usernames printed
+                st.write(y['password'].value())
+                st.write(y.value()[0])
+                # st.write(y[0]['password'].item)
+
+
+                if y[0]['password'] == 'password':
+                    password_list.append(y[0]['password'][0])
+                    st.write(y[0]['password'][0])
+                    st.write(password_list)
+    else:
+        print(path + " not found...")
+
+    # example: authenticator = stauth.Authenticate(names, usernames, hashed_passwords, 'some_cookie_name', 'some_signature_key', cookie_expiry_days=30)
+
+    hashed_passwords = stauth.Hasher(['!@Connor63', '!@Connor62']).generate()
+    print (hashed_passwords)
+
+    authenticator = stauth.Authenticate(
+        #config['credentials'],
+        usernames_list,
+        config['cookie']['name'],
+        config['cookie']['key'],
+        config['cookie']['expiry_days'],
+        config['preauthorized']['emails']
+    )
+
+    # for usernames, names, passwords in zip(usernames, names, passwords):
+    #    user_dict = {"name": usernames, "password": passwords}
+    #    credentials["usernames"].update({usernames: user_dict})
+
+    # authenticator = stauth.Authenticate("credentials", "cookie_name", "random_key", cookie_expiry_days=30)
+
+    # authenticator = stauth.Authenticate(names, usernames, hashed_passwords, 'alk_ai_assistant', 'hellodolly', cookie_expiry_days=30)
+
+
+    # Render the login widget by providing a name for the form and its location
+    # (i.e., sidebar or main):
+    name, authentication_status, username = authenticator.login('Login', 'main')
+    print("User and Credential Auth Status: " + str(authentication_status))
+    st.write("User and Credential Auth Status: " + str(authentication_status))
+    # print("User and Credential Info: " + name + authentication_status + username)
+    print("User and Credential Info: " + str(name))
+    st.caption("User and Credential Info: " + str(name))
+
+
+    if st.session_state["authentication_status"]:
+        authenticator.logout('Logout', 'main')
+        st.write(f'Welcome *{st.session_state["name"]}*')
+        # st.title('Some content')
+    elif st.session_state["authentication_status"] == False:
+        st.error('Username/password is incorrect')
+    elif st.session_state["authentication_status"] == None:
+        st.warning('Please enter your username and password')
+
+
+
+    # end authenticator
+
 st.title("🔍 Generative AI Assistant 🧐")
 gh_version = get_github_version()
-st.caption(gh_version)
+st.caption(gh_version + " with authenticator")
 
 # https://unicode.org/emoji/charts/full-emoji-list.html
 st.markdown(
         ''' 
-        > :black[**A Context-Based Generative AI Bot,  *powered by -  [LangChain]('https://langchain.readthedocs.io/en/latest/modules/memory.html#memory') + 
+        > :black[**A Context-Based Generative AI Bot with Authenticator,  *powered by -  [LangChain]('https://langchain.readthedocs.io/en/latest/modules/memory.html#memory') + 
         [OpenAI]('https://platform.openai.com/docs/models/gpt-3-5') + 
         [Streamlit]('https://streamlit.io') + [DataButton](https://www.databutton.io/)*]
         ''')
@@ -133,7 +229,10 @@ st.markdown(
 key = get_streamlight_open_api_key() # currently persisted in .env file
 #print(key)
 
-API_O = st.sidebar.text_input(":blue[Enter Your OPENAI API-KEY :]",
+# st.text_input(label, value="", max_chars=None, key=None, type="default", help=None,
+# autocomplete=None, on_change=None, args=None, kwargs=None, *, placeholder=None, disabled=False,
+# label_visibility="visible")
+API_O = st.sidebar.text_input(":blue[Enter Your OPENAI API-KEY :]",value=key,
                 placeholder="Paste your OpenAI API key here (sk-...)",
                 type="password") # Session state storage would be ideal
 # print("API_O", API_O)
@@ -217,7 +316,7 @@ with st.expander("Conversation", expanded=True):
         download_str.append(st.session_state["past"][i])
         download_str.append(st.session_state["generated"][i])
 
-    # Can throw error - requires fix
+    # TODO Can throw error - may require fix
     download_str = '\n'.join(download_str)
     if download_str:
         st.download_button('Download', download_str)
@@ -232,10 +331,6 @@ for i, sublist in enumerate(st.session_state.stored_session):
 if st.session_state.stored_session:
     if st.sidebar.checkbox("Clear-all"):
         del st.session_state.stored_session
-
-import streamlit as st
-import pandas as pd
-from io import StringIO
 
 uploaded_file = st.file_uploader("Choose a file to upload")
 

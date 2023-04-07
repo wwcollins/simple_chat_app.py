@@ -10,3 +10,21 @@ services:
       source: /var/run/docker.sock
       target: /var/run/docker.sock
 
+credentials:
+  usernames:
+    williamwcollins:
+      email: williamwcollinsjr@gmail.com
+      name: William Collins
+      password: '!@Connor62'
+    wcollins:
+      email: w.collins@alkemietechnologies.com
+      name: William Collins
+      password: '!@Connor62'
+cookie:
+  expiry_days: 365
+  key: '$2b$12$E1IosY'
+  name: generatedaicollins
+preauthorized:
+  emails:
+  - williamwcollinsjr@gmail.com
+
