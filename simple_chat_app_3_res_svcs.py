@@ -366,7 +366,7 @@ uploaded_file = st.file_uploader("Choose a file to upload")
 
 if uploaded_file is not None:
     print('Read and write file as bytes')
-    # bytes_data = uploaded_file.getvalue()
+    bytes_data = uploaded_file.getvalue()
     st.write(bytes_data)
 
     # To convert to a string based IO:
