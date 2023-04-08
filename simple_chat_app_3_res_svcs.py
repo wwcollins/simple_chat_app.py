@@ -265,7 +265,7 @@ if key is None:
 # st.text_input(label, value="", max_chars=None, key=None, type="default", help=None,
 # autocomplete=None, on_change=None, args=None, kwargs=None, *, placeholder=None, disabled=False,
 # label_visibility="visible")
-openai_apikey_help = "Acquire a "key of your own at https://platform.openai.com/account/api-keys."
+openai_apikey_help = "Acquire a key of your own at https://platform.openai.com/account/api-keys."
 API_O = st.sidebar.text_input(":blue[Enter Your OPENAI API-KEY :]",value=key,
                 placeholder="Paste your OpenAI API key here (sk-...)",
                 type="password", help="must be present to work!") # Session state storage would be ideal
