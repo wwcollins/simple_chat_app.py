@@ -88,14 +88,11 @@ def new_chat():
     Clears session state and starts a new chat.
     """
     # check to see if API key is present and formatted correctly
-    check_key_len = len(get_streamlight_open_api_key())
-    print("new_chat:apikey:Check key value: ", check_key_len)
-    if check_key_len < 51:  # keys should be 53 char len
-        print ("key length too short ")
-    else:
-        print("check key passes...")
-
+    check_key = len(get_streamlight_open_api_key())
+    print("new_chat:apikey:Check key value: ", check_key)
+    st.write("new_chat:apikey:Check key value: ", check_key)
     save = []
+
     for i in range(len(st.session_state['generated'])-1, -1, -1):
         save.append("User:" + st.session_state["past"][i])
         save.append("Bot:" + st.session_state["generated"][i])
