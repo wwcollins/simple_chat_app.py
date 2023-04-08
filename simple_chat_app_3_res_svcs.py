@@ -310,6 +310,7 @@ else:
 if key == None or key == "":
     st.sidebar.button("New Chat", on_click=new_chat, type='primary', disabled=True)
 else:
+    st.write("api key = ", key)
     st.sidebar.button("New Chat", on_click=new_chat, type='primary', disabled=False)
 
 ########### GET USER INPUT AND PROCESS ###############
