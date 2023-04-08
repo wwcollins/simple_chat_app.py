@@ -57,6 +57,12 @@ def get_streamlight_open_api_key():
     load_dotenv()
     api_key = os.getenv('OPENAI_API_KEY')
     print("get_streamlight_open_api_key", api_key)
+    # st.write("api_key = ", api_key)
+    st.write("api_key = ", api_key)
+    if(api_key) == 'None':
+        st.write("api_key = ", api_key)
+        api_key = ""
+        st.warning("api_key = ", api_key)
     return api_key
 
 st.set_page_config(page_title='🧠MemoryBot🤖', layout='wide')
@@ -65,8 +71,11 @@ if "generated" not in st.session_state:
 if "past" not in st.session_state:
     st.session_state["past"] = []
 if "input" not in st.session_state:  # Error thrown on cloud side - TODO Debug and Fix
+    try:
         st.session_state["input"] = ""
+    except Exception as e:
         st.warning("An error occured while initiating session state. Ensure your key is entered correctly")
+        print(e)
         st.session_state.entity_memory.store = {}
         st.session_state.entity_memory.buffer.clear()
         st.session_state["input"] = ""
@@ -92,11 +101,7 @@ def new_chat():
     st.session_state["generated"] = []
     st.session_state["past"] = []
     st.session_state["input"] = ""
-
     st.session_state.entity_memory.store = {}
-    # AttributeError: st.session_state has no attribute "entity_memory". Did you forget to
-    # initialize it? More info: https://docs.streamlit.io/library/advanced-features/session-state#initialization
-
     st.session_state.entity_memory.buffer.clear()
 
 def get_text():
