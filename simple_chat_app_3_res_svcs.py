@@ -293,8 +293,8 @@ else:
         ```
         - 1. Enter API Key + Hit enter 🔐 API Keys can be acquired here 
         - 2. Ask anything via the text input field,below.
-        Your API-key is not stored in any form by this app. However, for transparency ensure to 
-        delete your API once used.
+        Your API-key is not stored in any form by this app. Please ensure that you carefully store and use
+        your API key.
         ```
 
         ''')
