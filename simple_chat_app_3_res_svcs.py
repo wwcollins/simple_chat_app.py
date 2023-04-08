@@ -258,7 +258,7 @@ st.markdown(
 # Ask the user to enter their OpenAI API key
 key = get_streamlight_open_api_key() # currently persisted in .env file
 st.write(key)
-if key == 0 or key == "None":
+if key is None:
     st.warning("Your API Key is not entered properly or not the correct length. you can get a key of your own at https://platform.openai.com/account/api-keys."
 
 # st.text_input(label, value="", max_chars=None, key=None, type="default", help=None,
@@ -388,7 +388,7 @@ if uploaded_file is not None:
     dataframe = pd.read_csv(uploaded_file)
     st.write(dataframe)
 
-st.caption('William Collins - All Rights Reserved')
+st.caption('William Collins 2023 - All Rights Reserved')
 
 quit()
 
