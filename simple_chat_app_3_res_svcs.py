@@ -59,10 +59,10 @@ def get_streamlight_open_api_key():
     print("get_streamlight_open_api_key", api_key)
     # st.write("api_key = ", api_key)
     if(api_key) == 'None':
-        st.write("api_key = ", api_key)
+        # st.write("api_key = ", api_key)
         api_key = ""
         st.warning("api_key = ", api_key)
-        st.write("api_key modified = ", api_key)
+        # st.write("api_key modified = ", api_key)
     return api_key
 
 st.set_page_config(page_title='🧠MemoryBot🤖', layout='wide')
@@ -114,7 +114,7 @@ def get_text():
     input_text = st.text_input("You: ", st.session_state["input"], max_chars=10000,  key="input", placeholder="Your AI assistant here! Ask me anything ...")
     if len(input_text) > 4000:
         # st.balloons()
-        st.write('You have exceeded the suggested character limit of 4000')
+        st.write('You have exceeded the suggested character limit')
     return input_text
 
 
@@ -257,7 +257,7 @@ st.markdown(
 
 # Ask the user to enter their OpenAI API key
 key = get_streamlight_open_api_key() # currently persisted in .env file
-st.write(key)
+# st.write(key)
 if key is None:
     key = ""
     st.warning("Your API Key is not entered properly or not the correct length. you can get a key of your own at https://platform.openai.com/account/api-keys.")
@@ -265,15 +265,14 @@ if key is None:
 # st.text_input(label, value="", max_chars=None, key=None, type="default", help=None,
 # autocomplete=None, on_change=None, args=None, kwargs=None, *, placeholder=None, disabled=False,
 # label_visibility="visible")
-
-API_O = st.sidebar.text_input(":blue[Enter Your OPENAI API-KEY :]",
+openai_apikey_help = "Acquire a key of your own at https://platform.openai.com/account/api-keys."
+API_O = st.sidebar.text_input(":blue[Enter Your OPENAI API-KEY :]",value=key,
                 placeholder="Paste your OpenAI API key here (sk-...)",
-                type="password") # Session state storage would be ideal
+                type="password", help="must be present to work!") # Session state storage would be ideal
 # print("API_O", API_O)
 
 if len(API_O) < 10:
     API_O = 0
-
 
 if API_O:
     # Create an OpenAI instance
@@ -307,10 +306,7 @@ else:
     # st.sidebar.info("Your API-key is not stored in any form by this app. However, for transparency ensure to delete your API once used.")
 
 # Implementing a Button to Clear the memory and calling the new_chat() function
-if key != None:
-    st.sidebar.button("New Chat", on_click=new_chat, type='primary')
-else:
-    st.sidebar.button("New Chat", on_click=new_chat, type='primary', disabled=True)
+st.sidebar.button("New Chat", on_click=new_chat, type='primary')
 
 ########### GET USER INPUT AND PROCESS ###############
 # Get the user INPUT and RUN the chain.
