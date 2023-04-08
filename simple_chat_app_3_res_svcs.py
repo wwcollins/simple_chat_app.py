@@ -307,7 +307,10 @@ else:
     # st.sidebar.info("Your API-key is not stored in any form by this app. However, for transparency ensure to delete your API once used.")
 
 # Implementing a Button to Clear the memory and calling the new_chat() function
-st.sidebar.button("New Chat", on_click=new_chat, type='primary')
+if key != None:
+    st.sidebar.button("New Chat", on_click=new_chat, type='primary')
+else:
+    st.sidebar.button("New Chat", on_click=new_chat, type='primary', disabled=True)
 
 ########### GET USER INPUT AND PROCESS ###############
 # Get the user INPUT and RUN the chain.
