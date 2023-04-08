@@ -232,7 +232,7 @@ if authenticate_app:
 
     # end authenticator
 
-st.title("Your Generative AI Assistant 🧐")
+st.title("Your Generative AI Assistant 🧠")
 st.caption('William Collins 2023 - All Rights Reserved')
 
 # https://unicode.org/emoji/charts/full-emoji-list.html
@@ -242,7 +242,7 @@ st.markdown(
         [OpenAI]('https://platform.openai.com/docs/models/gpt-3-5') + 
         [Streamlit]('https://streamlit.io') + [DataButton](https://www.databutton.io/)*]
         ''')
-st.markdown(" > Powered by - LangChain + OpenAI + Streamlit 🤖 ")
+st.markdown(" > Powered by 🤖 - OPenAI + LangChain + Streamlit")
 
 
 # with st.expander('more...'):  # TODO this is throwing exception re nested expanders not allowed TODO investigate!
