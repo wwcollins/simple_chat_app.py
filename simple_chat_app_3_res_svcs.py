@@ -291,7 +291,7 @@ if API_O:
 else:
     st.markdown(''' 
         ```
-        - 1. Enter API Key + Hit enter 🔐 API Keys can be acquired here 
+        - 1. Enter API Key + Hit enter 🔐 API Keys can be acquired here https://platform.openai.com/account/api-keys
         - 2. Ask anything via the text input field,below.
         Your API-key is not stored in any form by this app. Please ensure that you carefully store and use
         your API key.
