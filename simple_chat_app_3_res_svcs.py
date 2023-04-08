@@ -327,7 +327,7 @@ if user_input:
             output = Conversation.run(input=user_input)
             output_len = len(output)
             st.write("Assistant output characters: ", output_len)
-            if output_len == 0:
+            if output_len < 10:
                 st.warning("We apologize. The AI Assistant Engine returned no response. Try rerunning your"
                            " request.  If this does not help please clear your browser cache.")
             st.session_state.past.append(user_input)
@@ -335,9 +335,6 @@ if user_input:
         except Exception as e:
             print ('Error:', e)
 
-        if not output:
-            st.write("If you do not receive a response it may mean that your API key is invalid.  Please "
-                     "check or regenerate the key and try again.")
 
         st.success('Done! See response, below')
         st.balloons()
