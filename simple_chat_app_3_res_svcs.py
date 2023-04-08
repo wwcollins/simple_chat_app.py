@@ -233,6 +233,7 @@ try:
     gh_version = get_github_version()
     st.caption(gh_version + " with authenticator")
 except Exception as e:
+    st.caption('William Collins 2023 - All Rights Reserved')
     st.caption("Version not currently available (authenticator)")
 
 # https://unicode.org/emoji/charts/full-emoji-list.html
@@ -334,7 +335,6 @@ if user_input:
             print ('Error:', e)
             st.warning("We apologize. The AI Assistant Engine returned no response. Ensure you are using a vaild key."
                    " Also try rerunning your request.  If this does not help please clear your browser cache.")
-
 
 
 # Allow to download as well
