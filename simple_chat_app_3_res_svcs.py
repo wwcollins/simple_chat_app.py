@@ -228,7 +228,7 @@ if authenticate_app:
     # end authenticator
 
 
-st.title("🔍 Your Generative AI Assistant 🧐")
+st.title("Your Generative AI Assistant 🧐")
 try:
     gh_version = get_github_version()
     st.caption(gh_version + " with authenticator")
@@ -323,18 +323,16 @@ len_user_input = str(len(user_input))
 if user_input:
     with st.spinner("processing your request...  this might take awhile"):
         time.sleep(5)
+        output = ""
         try:
             output = Conversation.run(input=user_input)
-            output_len = len(output)
             st.write("Assistant output characters: ", output_len)
-            if output_len < 10:
-                st.warning("We apologize. The AI Assistant Engine returned no response. Try rerunning your"
-                           " request.  If this does not help please clear your browser cache.")
             st.session_state.past.append(user_input)
             st.session_state.generated.append(output)
         except Exception as e:
             print ('Error:', e)
-
+            st.warning("We apologize. The AI Assistant Engine returned no response. Ensure you are using a vaild key."
+                   "Also rerunning your request.  If this does not help please clear your browser cache.")
 
         st.success('Done! See response, below')
         st.balloons()
