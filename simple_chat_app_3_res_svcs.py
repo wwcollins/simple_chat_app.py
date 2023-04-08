@@ -308,7 +308,7 @@ else:
 
 # Implementing a Button to Clear the memory and calling the new_chat() function
 st.write("api key = ", key)
-if key == None or key == "":
+if key == None:
     st.write("api key = ", key)
     st.sidebar.button("New Chat", on_click=new_chat, type='primary', disabled=True)
 else:
