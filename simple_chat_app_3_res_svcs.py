@@ -70,6 +70,9 @@ if "input" not in st.session_state:  # Error thrown on cloud side - TODO Debug a
     except Exception as e:
         st.warning("An error occured while initiating session state. Ensure your key is entered correctly")
         print (e)
+        st.session_state.entity_memory.store = {}
+        st.session_state.entity_memory.buffer.clear()
+        st.session_state["input"] = ""
 if "stored_session" not in st.session_state:
     st.session_state["stored_session"] = []
 
