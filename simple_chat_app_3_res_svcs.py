@@ -323,10 +323,9 @@ len_user_input = str(len(user_input))
 if user_input:
     with st.spinner("processing your request...  this might take awhile"):
         time.sleep(5)
-        output = ""
         try:
             output = Conversation.run(input=user_input)
-            st.write("Assistant output characters: ", output_len)
+            # st.write("Assistant output characters: ", output_len)
             st.session_state.past.append(user_input)
             st.session_state.generated.append(output)
         except Exception as e:
