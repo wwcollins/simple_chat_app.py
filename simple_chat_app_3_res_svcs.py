@@ -126,10 +126,10 @@ def get_text():
 # END METHODS - main code
 
     # Build Side Bar
-
+st.sidebar.caption('William Collins 2023 - All Rights Reserved')
 with st.sidebar.expander(" 🛠️ Settings ", expanded=False): # TODO - leverage this code e.g. Resume expansion of sections
     # Option to preview memory store
-    st.caption('William Collins 2023 - All Rights Reserved')
+
     if st.checkbox("Preview memory store"):
         st.write(st.session_state.entity_memory.store)
     # Option to preview memory buffer
