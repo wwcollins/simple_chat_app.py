@@ -101,7 +101,10 @@ def new_chat():
     st.session_state["generated"] = []
     st.session_state["past"] = []
     st.session_state["input"] = ""
-    st.session_state.entity_memory.store = {}
+    try:
+        st.session_state.entity_memory.store = {}  # debug error thrown that occurs only in Streamlit cloud
+    except Exception as e:
+        print("error encountered when setting ", e)
     st.session_state.entity_memory.buffer.clear()
 
 def get_text():
