@@ -301,8 +301,12 @@ else:
 
 # Implementing a Button to Clear the memory and calling the new_chat() function
 # st.write("api key = ", key)
-
-st.sidebar.button("New Chat", on_click=new_chat, type='primary', disabled=False)
+if key == None: # at this point all key return None since non-literal none-type so logic is not doing what was hoped
+    # st.write("api key = ", key)
+    st.sidebar.button("New Chat", on_click=new_chat, type='primary', disabled=False)
+else:
+    # st.write("api key = ", key)
+    st.sidebar.button("New Chat", on_click=new_chat, type='primary', disabled=False)
 
 ########### GET USER INPUT AND PROCESS ###############
 # Get the user INPUT and RUN the chain.
