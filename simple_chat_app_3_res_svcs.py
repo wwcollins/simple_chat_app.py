@@ -66,7 +66,7 @@ def get_streamlight_open_api_key():
         # st.write("api_key modified = ", api_key)
     return api_key
 
-st.set_page_config(page_title='🧠MemoryBot🤖', layout='wide')
+st.set_page_config(page_title='🧠MemoryBot🕵️‍', layout='wide') # 🕵️‍🤖
 if "generated" not in st.session_state:
     st.session_state["generated"] = []
 if "past" not in st.session_state:
@@ -242,7 +242,7 @@ st.markdown(
         [OpenAI]('https://platform.openai.com/docs/models/gpt-3-5') + 
         [Streamlit]('https://streamlit.io') + [DataButton](https://www.databutton.io/)*]
         ''')
-# st.markdown(" > Powered by -  🦜 LangChain + OpenAI + Streamlit")
+# st.markdown(" > Powered by -  🤖 LangChain + OpenAI + Streamlit")
 
 
 # with st.expander('more...'):  # TODO this is throwing exception re nested expanders not allowed TODO investigate!
