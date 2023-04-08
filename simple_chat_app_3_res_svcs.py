@@ -64,8 +64,12 @@ if "generated" not in st.session_state:
     st.session_state["generated"] = []
 if "past" not in st.session_state:
     st.session_state["past"] = []
-if "input" not in st.session_state:
-    st.session_state["input"] = ""
+if "input" not in st.session_state:  # Error thrown on cloud side - TODO Debug and Fix
+    try:
+        st.session_state["input"] = ""
+    except Exception as e:
+        st.warning("An error occured while initiating session state. Ensure your key is entered correctly")
+        print (e)
 if "stored_session" not in st.session_state:
     st.session_state["stored_session"] = []
 
