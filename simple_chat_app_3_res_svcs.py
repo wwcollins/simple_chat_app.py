@@ -221,16 +221,15 @@ if authenticate_app:
     elif st.session_state["authentication_status"] == None:
         st.warning('Please enter your username and password')
 
-
-
     # end authenticator
 
-st.title("🔍 Generative AI Assistant 🧐")
+
+st.title("🔍 Your Generative AI Assistant 🧐")
 try:
     gh_version = get_github_version()
     st.caption(gh_version + " with authenticator")
 except Exception as e:
-    st.caption("version not currently available" + " with authenticator")
+    st.caption("Version not currently available (authenticator)")
 
 # https://unicode.org/emoji/charts/full-emoji-list.html
 st.markdown(
@@ -242,12 +241,9 @@ st.markdown(
 # st.markdown(" > Powered by -  🦜 LangChain + OpenAI + Streamlit")
 
 
-
 # with st.expander('more...'):  # TODO this is throwing exception re nested expanders not allowed TODO investigate!
     #with st.expander("Resume Information", expanded=False):
         #st.write("...additional info here...")
-
-
 
 
 # -- start demo buttons
@@ -294,25 +290,19 @@ if API_O:
 else:
     st.markdown(''' 
         ```
-        - 1. Enter API Key + Hit enter 🔐 
-
-        - 2. Ask anything via the text input widget
-
-        Your API-key is not stored in any form by this app. However, for transparency ensure to delete your API once used.
+        - 1. Enter API Key + Hit enter 🔐 API Keys can be acquired here 
+        - 2. Ask anything via the text input field,below.
+        Your API-key is not stored in any form by this app. However, for transparency ensure to 
+        delete your API once used.
         ```
 
         ''')
     st.sidebar.warning('API key required to try this app.The API key is not stored in any form.')
-    # st.sidebar.info("Your API-key is not stored in any form by this app. However, for transparency ensure to delete your API once used.")
 
 # Implementing a Button to Clear the memory and calling the new_chat() function
-st.write("api key = ", key)
-if key == None:
-    st.write("api key = ", key)
-    st.sidebar.button("New Chat", on_click=new_chat, type='primary', disabled=True)
-else:
-    st.write("api key = ", key)
-    st.sidebar.button("New Chat", on_click=new_chat, type='primary', disabled=False)
+# st.write("api key = ", key)
+
+st.sidebar.button("New Chat", on_click=new_chat, type='primary', disabled=False)
 
 ########### GET USER INPUT AND PROCESS ###############
 # Get the user INPUT and RUN the chain.
