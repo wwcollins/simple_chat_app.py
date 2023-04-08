@@ -12,6 +12,10 @@ import os.path
 import openai
 # import dotenv # pip install python-dotenv moved to fn # see def
 
+# HTML Components test and embed iframe
+import streamlit.components.v1 as components  # Import Streamlit
+
+
 ##from langchain.chat_models import ChatOpenAI
 from langchain.chains import ConversationChain
 from langchain.chains.conversation.memory import ConversationEntityMemory
@@ -64,6 +68,13 @@ if "input" not in st.session_state:
     st.session_state["input"] = ""
 if "stored_session" not in st.session_state:
     st.session_state["stored_session"] = []
+
+
+# STREAMLIT COMPONENTS FOR HTML - Test
+app_path = "https://wwcollins-simple-chat-app-py-simple-chat-app-3-res-svcs-bc5wk7.streamlit.app" # did not work, rendered poorly
+# Render the h1 block, contained in a frame of size 200x200.
+# components.html("<html><body><h1><iframe src='http://" + app_path  + "/' height='100%' width='100%'></iframe>'</h1></body></html>', width=200, height=200")
+
 
 # METHODS: Front End (Streamlight)
 def new_chat():
@@ -234,18 +245,25 @@ st.markdown(
 
 # Ask the user to enter their OpenAI API key
 key = get_streamlight_open_api_key() # currently persisted in .env file
+if key == 0:
+    st.warning("Your API Key is not entered properly or not the correct length. you can get a key of your own at https://platform.openai.com/account/api-keys.")
 #print(key)
 
 # st.text_input(label, value="", max_chars=None, key=None, type="default", help=None,
 # autocomplete=None, on_change=None, args=None, kwargs=None, *, placeholder=None, disabled=False,
 # label_visibility="visible")
+openai_apikey_help = "After you have signed up for an OpenAi account you can acquire a " \
+                     "key of your own at https://platform.openai.com/account/api-keys.  Simply" \
+                     "Paste it into this box and press enter.  The key will be good for that session." \
+                     "If you would like to contact us for help please do so at techsupport@williamwcollinsjr.com"
 API_O = st.sidebar.text_input(":blue[Enter Your OPENAI API-KEY :]",value=key,
                 placeholder="Paste your OpenAI API key here (sk-...)",
-                type="password") # Session state storage would be ideal
+                type="password", help="must be present to work!") # Session state storage would be ideal
 # print("API_O", API_O)
 
-if len(API_O) == 0:
-    API_O = key
+if len(API_O) < 10:
+    API_O = 0
+
 
 if API_O:
     # Create an OpenAI instance
