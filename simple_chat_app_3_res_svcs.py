@@ -58,11 +58,11 @@ def get_streamlight_open_api_key():
     api_key = os.getenv('OPENAI_API_KEY')
     print("get_streamlight_open_api_key", api_key)
     # st.write("api_key = ", api_key)
-    st.write("api_key = ", api_key)
     if(api_key) == 'None':
         st.write("api_key = ", api_key)
         api_key = ""
         st.warning("api_key = ", api_key)
+        st.write("api_key modified = ", api_key)
     return api_key
 
 st.set_page_config(page_title='🧠MemoryBot🤖', layout='wide')
