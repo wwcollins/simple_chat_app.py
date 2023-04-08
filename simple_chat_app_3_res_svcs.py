@@ -69,13 +69,12 @@ if "input" not in st.session_state:  # Error thrown on cloud side - TODO Debug a
         st.session_state["input"] = ""
     except Exception as e:
         st.warning("An error occured while initiating session state. Ensure your key is entered correctly")
-        print (e)
+        print(e)
         st.session_state.entity_memory.store = {}
         st.session_state.entity_memory.buffer.clear()
         st.session_state["input"] = ""
 if "stored_session" not in st.session_state:
     st.session_state["stored_session"] = []
-
 
 # STREAMLIT COMPONENTS FOR HTML - Test
 app_path = "https://wwcollins-simple-chat-app-py-simple-chat-app-3-res-svcs-bc5wk7.streamlit.app" # did not work, rendered poorly
@@ -89,13 +88,10 @@ def new_chat():
     Clears session state and starts a new chat.
     """
     # check to see if API key is present and formatted correctly
-    check_key = get_streamlight_open_api_key()
-    print("new_chat:apikey:Check key value: ", check_key)
-    print(len(check_key))
-    print(type(check_key))
-    if len(check_key) < 51:  # keys should be 53 char len
+    check_key_len = len(get_streamlight_open_api_key())
+    print("new_chat:apikey:Check key value: ", check_key_len)
+    if check_key_len < 51:  # keys should be 53 char len
         print ("key length too short ")
-        quit()
     else:
         print("check key passes...")
 
