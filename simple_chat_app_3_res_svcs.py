@@ -328,7 +328,7 @@ if user_input:
             # st.write("Assistant output characters: ", output_len)
             st.session_state.past.append(user_input)
             st.session_state.generated.append(output)
-            st.success('Done! See response, below')
+            st.success('Success! See response, below')
             st.balloons()
         except Exception as e:
             print ('Error:', e)
