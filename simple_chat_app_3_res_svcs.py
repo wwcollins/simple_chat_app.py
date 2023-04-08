@@ -260,6 +260,7 @@ key = get_streamlight_open_api_key() # currently persisted in .env file
 # st.write(key)
 if key is None:
     key = ""
+
     st.warning("Your API Key is not entered properly or not the correct length. you can get a key of your own at https://platform.openai.com/account/api-keys.")
 
 # st.text_input(label, value="", max_chars=None, key=None, type="default", help=None,
@@ -268,7 +269,7 @@ if key is None:
 openai_apikey_help = "Acquire a key of your own at https://platform.openai.com/account/api-keys."
 API_O = st.sidebar.text_input(":blue[Enter Your OPENAI API-KEY :]",value=key,
                 placeholder="Paste your OpenAI API key here (sk-...)",
-                type="password", help="must be present to work!") # Session state storage would be ideal
+                type="password", help="must be present to work!", disabled=False) # Session state storage would be ideal
 # print("API_O", API_O)
 
 if len(API_O) < 10:
@@ -306,7 +307,10 @@ else:
     # st.sidebar.info("Your API-key is not stored in any form by this app. However, for transparency ensure to delete your API once used.")
 
 # Implementing a Button to Clear the memory and calling the new_chat() function
-st.sidebar.button("New Chat", on_click=new_chat, type='primary')
+if key == None or key == "":
+    st.sidebar.button("New Chat", on_click=new_chat, type='primary', disabled=True)
+else:
+    st.sidebar.button("New Chat", on_click=new_chat, type='primary', disabled=False)
 
 ########### GET USER INPUT AND PROCESS ###############
 # Get the user INPUT and RUN the chain.
