@@ -242,7 +242,7 @@ st.markdown(
         [OpenAI]('https://platform.openai.com/docs/models/gpt-3-5') + 
         [Streamlit]('https://streamlit.io') + [DataButton](https://www.databutton.io/)*]
         ''')
-# st.markdown(" > Powered by -  🤖 LangChain + OpenAI + Streamlit")
+st.markdown(" > Powered by - LangChain + OpenAI + Streamlit 🤖 ")
 
 
 # with st.expander('more...'):  # TODO this is throwing exception re nested expanders not allowed TODO investigate!
