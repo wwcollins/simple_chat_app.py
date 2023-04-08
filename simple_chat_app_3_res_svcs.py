@@ -257,6 +257,7 @@ st.markdown(
 
 # Ask the user to enter their OpenAI API key
 key = get_streamlight_open_api_key() # currently persisted in .env file
+st.write(key)
 if key == 0 or key == "None":
     st.warning("Your API Key is not entered properly or not the correct length. you can get a key of your own at https://platform.openai.com/account/api-keys.")
 #print(key)
