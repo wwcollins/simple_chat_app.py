@@ -8,6 +8,7 @@
 # CONSTANTS
 APP_ID_NAME = "CHAT INTERFACE ALKEMIE TECHNOLOGIES - Personal Assistant for Job Seekers"
 
+# Modules
 import os
 import os.path
 import openai
@@ -15,7 +16,6 @@ import openai
 
 # HTML Components test and embed iframe
 import streamlit.components.v1 as components  # Import Streamlit
-
 
 ##from langchain.chat_models import ChatOpenAI
 from langchain.chains import ConversationChain
@@ -126,10 +126,13 @@ def get_text():
 # END METHODS - main code
 
     # Build Side Bar
-st.sidebar.caption('William Collins 2023 - All Rights Reserved')
+try:
+    gh_version = get_github_version()
+    st.sidebar.caption("version: " + gh_version)
+except Exception as e:
+    st.sidebar.caption("Version not currently available()")
 with st.sidebar.expander(" 🛠️ Settings ", expanded=False): # TODO - leverage this code e.g. Resume expansion of sections
     # Option to preview memory store
-
     if st.checkbox("Preview memory store"):
         st.write(st.session_state.entity_memory.store)
     # Option to preview memory buffer
@@ -229,14 +232,8 @@ if authenticate_app:
 
     # end authenticator
 
-
 st.title("Your Generative AI Assistant 🧐")
-try:
-    gh_version = get_github_version()
-    st.caption(gh_version + " with authenticator")
-except Exception as e:
-    st.caption('William Collins 2023 - All Rights Reserved')
-    st.sidebar.caption("Version not currently available (authenticator)")
+st.caption('William Collins 2023 - All Rights Reserved')
 
 # https://unicode.org/emoji/charts/full-emoji-list.html
 st.markdown(
