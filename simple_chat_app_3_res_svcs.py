@@ -266,7 +266,9 @@ if key is None:
 # autocomplete=None, on_change=None, args=None, kwargs=None, *, placeholder=None, disabled=False,
 # label_visibility="visible")
 
-API_O = st.sidebar.text_input(":blue[Enter Your OPENAI API-KEY :]",value=key, placeholder="Paste your OpenAI API key here (sk-...)", type="password", help="must be present to work!") # Session state storage would be ideal
+API_O = st.sidebar.text_input(":blue[Enter Your OPENAI API-KEY :]",
+                placeholder="Paste your OpenAI API key here (sk-...)",
+                type="password") # Session state storage would be ideal
 # print("API_O", API_O)
 
 if len(API_O) < 10:
