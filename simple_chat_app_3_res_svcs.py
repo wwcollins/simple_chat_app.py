@@ -328,13 +328,14 @@ if user_input:
             # st.write("Assistant output characters: ", output_len)
             st.session_state.past.append(user_input)
             st.session_state.generated.append(output)
+            st.success('Done! See response, below')
+            st.balloons()
         except Exception as e:
             print ('Error:', e)
             st.warning("We apologize. The AI Assistant Engine returned no response. Ensure you are using a vaild key."
-                   "Also rerunning your request.  If this does not help please clear your browser cache.")
+                   " Also try rerunning your request.  If this does not help please clear your browser cache.")
 
-        st.success('Done! See response, below')
-        st.balloons()
+
 
 # Allow to download as well
 download_str = []
