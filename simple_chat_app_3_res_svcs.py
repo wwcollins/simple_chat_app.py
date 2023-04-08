@@ -3,6 +3,7 @@
 # uses chatgpi to create instructions sets/code
 # ref https://medium.com/@avra42/how-to-build-a-chatbot-with-chatgpt-api-and-a-
 # conversational-memory-in-python-8d856cda4542
+# Copyright William Collins 2023 - All Rights Reserved
 
 # CONSTANTS
 APP_ID_NAME = "CHAT INTERFACE ALKEMIE TECHNOLOGIES - Personal Assistant for Job Seekers"
@@ -128,6 +129,7 @@ def get_text():
 
 with st.sidebar.expander(" 🛠️ Settings ", expanded=False): # TODO - leverage this code e.g. Resume expansion of sections
     # Option to preview memory store
+    st.caption('William Collins 2023 - All Rights Reserved')
     if st.checkbox("Preview memory store"):
         st.write(st.session_state.entity_memory.store)
     # Option to preview memory buffer
@@ -234,7 +236,7 @@ try:
     st.caption(gh_version + " with authenticator")
 except Exception as e:
     st.caption('William Collins 2023 - All Rights Reserved')
-    st.caption("Version not currently available (authenticator)")
+    st.sidebar.caption("Version not currently available (authenticator)")
 
 # https://unicode.org/emoji/charts/full-emoji-list.html
 st.markdown(
