@@ -116,8 +116,6 @@ def get_text():
         (str): The text entered by the user
     """
     # st.text_input(label, value="", max_chars=None, key=None, type="default", help=None, autocomplete=None, on_change=None, args=None, kwargs=None, *, placeholder=None, disabled=False, label_visibility="visible")
-
-    # text_input = st.text_input("Enter text here", max_chars=None)  # TODO 
     input_text = st.text_input("You: ", st.session_state["input"], max_chars=None,  key="input", placeholder="Your AI assistant here! Ask me anything ...")
     if len(input_text) > 4000:
         # st.balloons()
@@ -145,7 +143,7 @@ with st.sidebar.expander(" 🛠️ Settings ", expanded=False): # TODO - leverag
     # options = ['gpt-3.5-turbo', 'text-davinci-003', 'code-davinci-002']) # original code but replaced by above since remaining options threw error
     TEMPERATURE = st.selectbox(label='Temperature',
                          options=[0.5, 0, 1])
-    K = st.number_input(' (#)Summary of prompts to consider',min_value=3,max_value=None)
+    K = st.number_input(' (#)Summary of prompts to consider',min_value=3,max_value=1000)
 
 # Set up the Streamlit app layout
 
