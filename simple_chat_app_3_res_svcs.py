@@ -337,6 +337,7 @@ if user_input:
             st.warning("We apologize. The AI Assistant Engine returned no response. Ensure you are using a vaild key."
                    " Also try rerunning your request.  If this does not help please clear your browser cache.")
 
+quit()
 
 # Allow to download as well
 download_str = []
