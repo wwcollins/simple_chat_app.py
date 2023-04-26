@@ -117,8 +117,11 @@ def get_text():
     """
     # st.text_input(label, value="", max_chars=None, key=None, type="default", help=None, autocomplete=None, on_change=None, args=None, kwargs=None, *, placeholder=None, disabled=False, label_visibility="visible")
 
-    # text_input = st.text_input("Enter text here", max_chars=None)  # TODO 
-    input_text = st.text_input("You: ", st.session_state["input"], max_chars=None,  key="input", placeholder="Your AI assistant here! Ask me anything ...")
+    # text_input = st.text_input("Enter text here", max_chars=None)  # TODO
+    placeholder = "Your AI assistant here! Ask me anything ..."
+    placeholder = ""
+    input_text = st.text_input("You: ", st.session_state["input"], max_chars=None,  key="input",
+                               placeholder=placeholder)
     if len(input_text) > 4000:
         # st.balloons()
         st.write('You have exceeded the suggested character limit')
@@ -337,7 +340,12 @@ if user_input:
             st.warning("We apologize. The AI Assistant Engine returned no response. Ensure you are using a vaild key."
                    " Also try rerunning your request.  If this does not help please clear your browser cache.")
 
-quit()
+quit() # Code below, including file upload example is no longer valid at this point.
+
+
+
+
+
 
 # Allow to download as well
 download_str = []
